@@ -100,7 +100,6 @@
         container.append(todoList)
 
         todoItemForm.form.addEventListener('submit', function(e){
-            // чтобы страница не перезагружалась
             e.preventDefault();
             if(!todoItemForm.input.value){
                  return 
@@ -109,7 +108,6 @@
             let todoItem = createTodoItem(todoItemForm.input.value)
             localStorage.setItem(key, JSON.stringify(todoItemForm.input.value))
             
-           // добавляем обработчики на кнопки 
             todoItem.doneButton.addEventListener('click', function(){
                 todoItem.item.classList.toggle('list-group-item-success')
                 
@@ -120,12 +118,8 @@
                     localStorage.removeItem(key)
                 }
             })
-            // создаем и добавляем новое дело с названием из поля для ввода
-            todoList.append(todoItem.item)
-            
-            // выставляем кнопке disabled
+            todoList.append(todoItem.item)          
             todoItemForm.button.disabled = true
-            // обнуляем значение в поле, чтобы не пришлось стирать его из поля для ввода
             todoItemForm.input.value = ''
             
         }) 
